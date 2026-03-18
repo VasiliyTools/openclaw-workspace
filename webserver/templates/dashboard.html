@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
+        .container { max-width: 1000px; margin: 20px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1 { color: #333; text-align: center; }
+        .executors { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+        .executor-card { background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 20px; width: 260px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .executor-icon { font-size: 48px; text-align: center; margin-bottom: 10px; }
+        .executor-title { font-size: 20px; font-weight: bold; color: #333; margin: 10px 0; text-align: center; }
+        .executor-description { font-size: 14px; color: #666; margin-bottom: 15px; line-height: 1.4; }
+        .executor-status { font-size: 13px; font-weight: bold; padding: 4px 8px; border-radius: 12px; display: inline-block; margin-bottom: 10px; }
+        .status-ready { background: #d4edda; color: #155724; }
+        .executor-last-task { font-size: 12px; color: #888; font-style: italic; }
+        .button { display: block; width: 100%; padding: 10px; background: #28a745; color: white; text-align: center; text-decoration: none; border-radius: 4px; margin-top: 15px; }
+        .button:hover { background: #218838; }
+        .logout { margin-top: 30px; text-align: right; }
+        .logout a { color: #dc3545; text-decoration: none; }
+        .logout a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, {{ username }}!</h1>
+        
+        <div class="executors">
+            {% for executor in executors %}
+            <div class="executor-card">
+                <div class="executor-icon">{{ executor.icon }}</div>
+                <div class="executor-title">{{ executor.title }}</div>
+                <div class="executor-description">{{ executor.description }}</div>
+                <div class="executor-status status-ready">{{ executor.status }}</div>
+                <div class="executor-last-task">Последнее задание: {{ executor.last_task }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <a href="{{ url_for('view_logs') }}" class="button">Просмотр логов Telegram</a>
+        <a href="{{ url_for('structure') }}" class="button" style="background-color: #007bff; margin-top: 10px;">Структура системы</a>
+        <a href="{{ url_for('financier_reports') }}" class="button" style="background-color: #ffc107; margin-top: 10px;">Отчёты Финансиста</a>
+        <a href="{{ url_for('financier_reports_list') }}" class="button" style="background-color: #28a745; margin-top: 10px;">Список всех отчётов</a>
+        
+        <div class="logout">
+            <a href="{{ url_for('logout') }}">Выйти</a>
+        </div>
+    </div>
+</body>
+</html>

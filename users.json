@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "id": "5358497705",
+      "name": "Диего",
+      "telegram": "@CristobalHunto"
+    },
+    {
+      "id": "1298660640",
+      "name": "Тень",
+      "telegram": null
+    },
+    {
+      "id": "unknown2",
+      "name": "Второй",
+      "telegram": null
+    },
+    {
+      "id": "unknown3",
+      "name": "Третий",
+      "telegram": null
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Структура системы</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
+        .container { max-width: 1000px; margin: 20px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1, h2 { color: #333; }
+        .section { margin-bottom: 30px; }
+        .personality-card { background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; margin-bottom: 15px; }
+        .personality-title { font-size: 18px; font-weight: bold; color: #333; }
+        .personality-description { font-size: 14px; color: #666; margin-top: 5px; }
+        .user-list { list-style-type: none; padding: 0; }
+        .user-list li { padding: 8px; border-bottom: 1px solid #eee; }
+        .back-link { display: inline-block; margin-top: 20px; color: #007bff; text-decoration: none; }
+        .back-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Структура системы личностей Василия</h1>
+        
+        <div class="section">
+            <h2>Архитектура пользователей</h2>
+            <ul class="user-list">
+                <li><strong>Диего</strong> (@CristobalHunto, ID: 5358497705) - инициатор системы</li>
+                <li><strong>Второй пользователь</strong> (Telegram ID добавлен, имя уточнить)</li>
+                <li><strong>Третий пользователь</strong> (ожидается)</li>
+                <li><strong>Четвертый пользователь</strong> (ожидается)</li>
+            </ul>
+            <p><strong>Принципы:</strong> 4 разных реальных пользователя обращаются к одному экземпляру Василия. Единое рабочее пространство, полная прозрачность, нет разделения данных.</p>
+        </div>
+        
+        <div class="section">
+            <h2>Личности-исполнители</h2>
+            {% for executor in executors %}
+            <div class="personality-card">
+                <div class="personality-title">{{ executor.icon }} {{ executor.title }}</div>
+                <div class="personality-description">{{ executor.description }}</div>
+                <div><strong>Статус:</strong> {{ executor.status }}</div>
+                <div><strong>Последнее задание:</strong> {{ executor.last_task }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="section">
+            <h2>Функциональность</h2>
+            <ul>
+                <li>Приём задач от любого из 4 пользователей</li>
+                <li>Создание и управление личностями-исполнителями для конкретных задач</li>
+                <li>Контроль исполнения, выдача заданий, отслеживание прогресса</li>
+                <li>Обеспечение полной прозрачности между всеми пользователями</li>
+                <li>Вся память, файлы и контент — общие для всех</li>
+            </ul>
+        </div>
+        
+        <a href="{{ url_for('dashboard') }}" class="back-link">← Назад к панели</a>
+    </div>
+</body>
+</html>

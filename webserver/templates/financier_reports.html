@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Отчёты Финансиста</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
+        .container { max-width: 1000px; margin: 20px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1, h2 { color: #333; }
+        .report-content { background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 20px; margin-top: 20px; white-space: pre-wrap; font-family: monospace; font-size: 14px; overflow-x: auto; }
+        .back-link { display: inline-block; margin-top: 20px; color: #007bff; text-decoration: none; }
+        .back-link:hover { text-decoration: underline; }
+        .button { display: inline-block; padding: 10px 20px; background: #28a745; color: white; text-decoration: none; border-radius: 4px; margin-top: 10px; }
+        .button:hover { background: #218838; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Отчёты Финансиста</h1>
+        <p>Здесь хранятся все выполненные задачи и аналитические отчёты Финансиста.</p>
+        
+        <div class="report-content">
+            {{ reports|safe }}
+        </div>
+        
+        <a href="{{ url_for('dashboard') }}" class="back-link">← Назад к панели</a>
+        <a href="{{ url_for('structure') }}" class="back-link">Структура системы</a>
+        <a href="/static/financier_report.pdf" class="button" style="background-color: #dc3545; margin-top: 10px;">Скачать PDF-отчёт</a>
+    </div>
+</body>
+</html>

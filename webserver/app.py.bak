@@ -1,0 +1,84 @@
+from flask import Flask, render_template, request, redirect, url_for, session
+import os
+
+app = Flask(__name__)
+app.secret_key = 'supersecretkey'  # In production, use a proper secret key
+
+# User credentials (username: password)
+# In a real app, use proper password hashing and store in a database
+USERS = {
+    'vasiliy': 'vasiliy123',
+    'diego': 'diego123',
+    'user2': 'user2pass',
+    'user3': 'user3pass',
+    'user4': 'user4pass'
+}
+
+# Print credentials to console for Telegram distribution
+print("=== DEFAULT CREDENTIALS ===")
+for username, password in USERS.items():
+    print(f"{username}:{password}")
+print("===========================")
+
+def get_telegram_logs():
+    """Concatenate all memory/*.md files"""
+    log_dir = os.path.join(os.path.dirname(__file__), '..', 'memory')
+    logs = []
+    if os.path.exists(log_dir):
+        for filename in sorted(os.listdir(log_dir)):
+            if filename.endswith('.md'):
+                filepath = os.path.join(log_dir, filename)
+                try:
+                    with open(filepath, 'r', encoding='utf-8') as f:
+                        logs.append(f"--- {filename} ---\n")
+                        logs.append(f.read())
+                        logs.append("\n\n")
+                except Exception as e:
+                    logs.append(f"Error reading {filename}: {e}\n\n")
+    else:
+        logs.append("Memory directory not found.\n")
+    return ''.join(logs) if logs else "No log files found."
+
+@app.route('/', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        if username in USERS and USERS[username] == password:
+            session['username'] = username
+            return redirect(url_for('dashboard'))
+        else:
+            return render_template('login.html', error='Invalid credentials')
+    return render_template('login.html')
+
+@app.route('/dashboard')
+def dashboard():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    username = session['username']
+    # Company structure: list of all personalities
+    # Director Vasiliy is always present, plus users from USER.md or placeholders
+    # We'll show all users from our USERS dict as the company structure
+    company_structure = [
+        'Director Vasiliy',
+        'Diego',
+        'User2',
+        'User3',
+        'User4'
+    ]
+    return render_template('dashboard.html', username=username, company_structure=company_structure)
+
+@app.route('/view_logs')
+def view_logs():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    logs = get_telegram_logs()
+    return render_template('logs.html', logs=logs)
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('login'))
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8080, debug=True)

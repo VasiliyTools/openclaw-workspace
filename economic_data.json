@@ -1,0 +1,66 @@
+{
+  "timestamp": "2026-03-17T12:09:00.619102Z",
+  "fed": {
+    "next_meeting": "2026-03-20",
+    "last_meeting": "2026-02-15",
+    "rate_decision_expected": true,
+    "current_rate": "5.25-5.50%",
+    "probability_of_hike": 15,
+    "probability_of_cut": 25,
+    "probability_of_hold": 60
+  },
+  "inflation": {
+    "last_cpi": {
+      "date": "2026-02-15",
+      "monthly": "0.4%",
+      "yearly": "3.2%",
+      "core_yearly": "3.5%"
+    },
+    "next_cpi_release": "2026-03-15",
+    "trend": "moderate_decline"
+  },
+  "employment": {
+    "last_nfp": {
+      "date": "2026-02-01",
+      "change": "+225K",
+      "unemployment": "3.7%"
+    },
+    "next_nfp": "2026-03-01",
+    "trend": "stable"
+  },
+  "dollar": {
+    "current": 103.85,
+    "change": "+0.15%",
+    "trend": "moderately_strong"
+  },
+  "geopolitical": {
+    "overall_risk_level": "elevated",
+    "major_conflicts": [
+      "Middle East tensions",
+      "Trade disputes"
+    ],
+    "impact_on_gold": "positive",
+    "confidence": 0.7
+  },
+  "etf_flows": {
+    "gld": {
+      "last_change": "+2.45 tons",
+      "total_holdings": "825.45 tons",
+      "trend": "accumulation"
+    },
+    "iau": {
+      "last_change": "+1.20 tons",
+      "total_holdings": "512.30 tons",
+      "trend": "stable"
+    }
+  },
+  "summary": {
+    "overall_bias": "neutral_slightly_bullish",
+    "key_drivers": [
+      "Fed expectations",
+      "Inflation data",
+      "Geopolitical risks"
+    ],
+    "risk_level": "medium"
+  }
+}
