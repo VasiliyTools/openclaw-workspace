@@ -66,8 +66,18 @@ Supports single file input; for batch processing, wrap in a shell loop.
 
 ## Voice Tools
 
-- Speech-to-text: Vosk (`vosk-transcribe.py`, `vosk-model/` directory).
-- Text-to-speech: Piper TTS (`piper_tts.py`).
+### Speech-to-text (STT)
+- Uses Vosk API for offline speech recognition.
+- Model: `vosk-model/` directory contains a small Russian-language model (download separately if needed).
+- Script: `vosk_transcribe.py` – captures audio from microphone, transcribes to text in real time or from file.
+- Additional helper: `transcribe.py` – simple wrapper for file-based transcription.
+
+### Text-to-speech (TTS)
+- Uses Piper TTS for high-quality offline synthesis.
+- Script: `piper_tts.py` – converts text to speech using a selected voice (default Russian voice if available).
+- Requires Piper binary and voice model files (can be installed via `pip install piper-tts` and downloading voices).
+
+Both tools are integrated into the assistant for voice commands and audio responses.
 
 ## Web Server
 
